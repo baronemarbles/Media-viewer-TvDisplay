@@ -60,7 +60,7 @@
 // export default App
 
 // App.jsx
-import { useState, useEffect, useRef } from 'react';
+import { useState,useCallback, useEffect, useRef } from 'react';
 import logoVTV from './assets/LOGO_vtv-da-gente-colorida.png';
 import playImg from './assets/playBtn.svg';
 import pauseImg from './assets/pauseBtn.svg';
@@ -69,7 +69,7 @@ import backwardImg from './assets/backwardsBtn.svg';
 import './App.css';
 
 // URL base do seu backend. Certifique-se que é a porta correta do seu server.js
-const BACKEND_URL = 'http://localhost:3333';
+const BACKEND_URL = 'http://192.168.0.126:3333';
 
 function App() {
   const [mediaList, setMediaList] = useState([]);
@@ -80,33 +80,66 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const mediaElementRef = useRef(null); // Para referenciar o elemento <video> ou <img>
-
-  // 1. Buscar a lista de mídias do backend quando o componente montar
-  useEffect(() => {
-    async function fetchMedia() {
-      setIsLoading(true);
-      setError(null);
-      try {
-        const response = await fetch(`${BACKEND_URL}/api/media-list`);
-        if (!response.ok) {
-          throw new Error(`Falha ao buscar mídias: ${response.status} ${response.statusText}`);
-        }
-        const data = await response.json();
-        setMediaList(data);
-        if (data.length === 0) {
-            console.warn("Nenhuma mídia encontrada na pasta configurada no backend.");
-        }
-      } catch (err) {
-        console.error("Erro ao buscar lista de mídias:", err);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    fetchMedia();
-  }, []); // Array de dependências vazio [], executa apenas uma vez na montagem
-
   const currentMedia = mediaList.length > 0 ? mediaList[currentMediaIndex] : null;
+  // Função para buscar a lista de mídias
+  const fetchMedia = useCallback(async (isInitialLoad = false) => {
+    if (isInitialLoad) {
+        setIsLoading(true);
+        setError(null);
+    }
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/media-list`);
+      if (!response.ok) {
+        throw new Error(`Falha ao buscar mídias: ${response.status} ${response.statusText}`);
+      }
+      const data = await response.json();
+      setMediaList(data);
+      if (isInitialLoad) setIsLoading(false);
+    } catch (err) {
+      console.error("Erro ao buscar lista de mídias:", err);
+      setError(err.message);
+      if (isInitialLoad) setIsLoading(false);
+    }
+  }, [BACKEND_URL]); // Removido isLoading da dependência, controlado por argumento
+
+  // Efeito para buscar dados iniciais e configurar Server-Sent Events
+  useEffect(() => {
+    fetchMedia(true); // Busca inicial, marcando como carregamento inicial
+
+    const eventSource = new EventSource(`${BACKEND_URL}/api/media-updates`);
+    console.log(`Conectando ao SSE em ${BACKEND_URL}/api/media-updates`);
+
+    eventSource.onopen = () => {
+      console.log("Conexão SSE aberta com o servidor.");
+    };
+
+    // Escuta por eventos chamados 'mediaUpdated' (que definimos no backend)
+    eventSource.addEventListener('mediaUpdated', (event) => {
+      console.log("Evento SSE 'mediaUpdated' recebido, dados:", event.data);
+      // Os dados do evento (event.data) podem conter informações sobre a mudança, se você quiser
+      // Por agora, apenas vamos rebuscar a lista inteira.
+      fetchMedia(false); // Rebusca a lista de mídias, não é o carregamento inicial
+    });
+    
+    eventSource.addEventListener('connected', (event) => {
+      const eventData = JSON.parse(event.data);
+      console.log("Evento SSE 'connected' recebido:", eventData.message);
+    });
+
+    eventSource.onerror = (err) => {
+      console.error("Erro no EventSource:", err);
+      // O EventSource tentará reconectar automaticamente em caso de erro de rede.
+      // Se o servidor fechar a conexão intencionalmente ou houver um erro fatal,
+      // pode ser necessário fechar aqui para evitar loops.
+      // eventSource.close(); // Descomente se quiser fechar em qualquer erro.
+    };
+
+    // Limpa a conexão EventSource quando o componente é desmontado
+    return () => {
+      console.log("Fechando conexão SSE.");
+      eventSource.close();
+    };
+  }, [fetchMedia, BACKEND_URL]); // fetchMedia é agora uma dependência estável devido ao useCallback
 
   // 2. Funções de controle
   const handleNext = () => {
