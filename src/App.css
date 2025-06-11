@@ -1,90 +1,120 @@
+/* --- CONFIGURAÇÕES GERAIS E CENTRALIZAÇÃO --- */
 #root {
   text-align: center;
-width: 100dvw;  
+  /* Usamos min-height para garantir que o contêiner ocupe pelo menos a altura da tela */
+  min-height: 100dvh;
+  width: 100dvw;
+  
+  /* Usando flexbox para centralizar o player na tela */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
 }
 
 .logo {
-  height: 10em;
-  padding: 1.5em;
-
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  height: 6em; /* Diminuí um pouco para telas verticais */
+  padding-bottom: 1em;
 }
 
-
+/* --- O NOVO PLAYER WRAPPER --- */
 .div_playerWrapper {
-    display: grid;
-    grid-template-columns: min-content min-content;
-    border: 2px solid red;
-    border-radius: 12px;
-    width: fit-content;
-
+  display: flex; /* 1. Usa flexbox para alinhar controles e player lado a lado */
+  /* flex-direction: row-reverse; Alinhamento horizontal */
+  
+  width: 100vw; /* 2. Faz o wrapper ocupar quase toda a largura da tela */
+  /* max-width: 1200px; Um limite máximo para não ficar gigante em telas muito grandes */
+  height: 100vh;
+  
+  /* border: 2px solid #1F669C; Usei sua cor azul */
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.4); /* Um fundo escuro para destacar o player */
+  overflow: hidden; /* Garante que os cantos arredondados sejam respeitados pelos filhos */
+  backdrop-filter: blur(10px);
 }
 
-.div_playerContainer{
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
-    width: inherit;
-}
-
-#displayVideo{
-    width: 100%;
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
-}
-
+/* --- CONTROLES (POUCAS MUDANÇAS) --- */
 .div_controlesWrapper {
-    border: 2px solid green;
+    display: flex;
     width: fit-content;
+    height: 50%;
+    border: none;
+    z-index: 12;
+    position: relative;
+    /* left: inherit; */
+    /* border: 2px solid red; */
+    justify-self: end;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .03);
+    background-color: rgba(0, 0, 0, 0.03);
+    /* align-self: center*/;
+}
+
+.div_controlesContainer {
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
+    justify-content: space-evenly;
+    padding: 0 1rem;
+    /* border: 2px solid salmon; */
 }
 
-.div_controlesContainer{
-  display: flex;
-  flex-direction: column;
-  /* gap: 2rem 0; */
-  background-color: rgba(0,0,0,0.4);
+
+/* --- PLAYER CONTAINER (A MÁGICA) --- */
+.div_playerContainer {
+  flex-grow: 1; /* Faz o container do player ocupar todo o espaço restante */
+  width: auto; /* A largura será controlada pelo flex-grow */
+  border-radius: 0; /* O wrapper já tem o overflow: hidden */
+
+  /* 3. A MÁGICA ACONTECE AQUI: Força a proporção de 9:16 */
+  aspect-ratio: 9 / 16;
+  
+  position: relative; /* Essencial para o posicionamento do vídeo/imagem */
+  background-color: #000; /* Fundo preto caso a mídia não carregue ou tenha barras */
+  align-content: center;
+}
+
+/* --- VÍDEO E IMAGEM (PARA PREENCHER O CONTAINER) --- */
+/* Unificando os estilos para vídeo e imagem */
+#displayVideo,
+#displayMedia {
+  /* 4. Faz a mídia preencher o container com aspect-ratio */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  justify-content: space-evenly;
-  padding:0px 1rem;
-  border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
+  
+  /* 5. Garante que a mídia cubra a área sem distorcer */
+  object-fit: cover; 
+  
+  border-top-right-radius: 10px; /* Aplicando o radius aqui */
+  border-bottom-right-radius: 10px;
 }
 
-.btn_menuItens{
+
+/* --- BOTÕES (SEU CÓDIGO ORIGINAL, ESTÁ BOM) --- */
+.btn_menuItens {
   display: flex;
   height: 5rem;
   width: fit-content;
   border-radius: 10px 50px;
   border: 2px solid #ffd563;
-  background-image: linear-gradient(45deg, #f9C535,#dda815);
+  background-image: linear-gradient(45deg, #f9C535, #dda815);
   cursor: pointer;
   padding: .5rem 1rem;
   place-items: center;
   transition: all .4s ease;
-
-}
-
-.btn_menuItens:focus{
-  box-shadow: inset 30px rgb(255, 204, 62);
-  scale: 90%;
+  box-shadow: 0 0 20px rgb(255 204 65 / 65%);
+  animation: playToPause .5s;
+  animation-timing-function: ease-in;
   
 }
 
-/*
-laranja: #F9C535
-azul:    #1F669C
-*/
-.btn__images{
+
+.btn__images {
   height: 4.5rem;
 }
-
 
 
 @keyframes logo-spin {
@@ -104,15 +134,20 @@ azul:    #1F669C
 
 @keyframes playToPause{
   0%{
-      opacity: 100%;
-      
-      
+    scale: 100%;
+    box-shadow: 0 0 20px rgb(255 204 65 / 65%);
+  }
+
+  50%{
+    
+    scale: 95%;
+    box-shadow: 0 0 20px rgba(107, 78, 0, 0.65);
   }
 
 
   100%{
-    opacity: 0;
-    display: none;
+    box-shadow: 0 0 20px rgb(255 204 65 / 65%);
+    scale: 100%;
   }
 }
 

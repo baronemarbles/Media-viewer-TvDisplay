@@ -68,8 +68,10 @@ import fowardImg from './assets/fowardBtn.svg';
 import backwardImg from './assets/backwardsBtn.svg';
 import './App.css';
 
+const isClicked = useState(false)
+
 // URL base do seu backend. Certifique-se que é a porta correta do seu server.js
-const BACKEND_URL = 'http://192.168.0.126:3333';
+const BACKEND_URL = 'http://192.168.0.129:3333';
 
 function App() {
   const [mediaList, setMediaList] = useState([]);
@@ -227,10 +229,52 @@ function App() {
 
   return (
     <>
-      <img className="logo" src={logoVTV} alt="Logo VTV"></img>
+      {/*<img className="logo" src={logoVTV} alt="Logo VTV"></img>*/}
 
       <div className="div_playerWrapper">
-        <div className="div_controlesWrapper">
+        {/* <div className="div_controlesWrapper">
+          <div className="div_controlesContainer">
+            <button 
+              id='btn_play' 
+              onClick={handlePlay} 
+              className="btn_menuItens" 
+              disabled={!currentMedia || currentMedia?.type !== 'video' || isPlaying}
+              title="Play"
+            >
+              <img className='btn__images' src={playImg} alt="Play Button" />
+            </button>
+            <button 
+              id='btn_pause' 
+              onClick={handlePause} 
+              className="btn_menuItens" 
+              disabled={!currentMedia || currentMedia?.type !== 'video' || !isPlaying}
+              title="Pause"
+            >
+              <img className='btn__images' src={pauseImg} alt="Pause Button" />
+            </button>
+            <button 
+              id='btn_backward' 
+              onClick={handlePrevious} 
+              className="btn_menuItens" 
+              disabled={mediaList.length <= 1}
+              title="Voltar"
+            >
+              <img className='btn__images' src={backwardImg} alt="Backwards Button" />
+            </button>
+            <button 
+              id='btn_foward' 
+              onClick={handleNext} 
+              className="btn_menuItens" 
+              disabled={mediaList.length <= 1}
+              title="Avançar"
+            >
+              <img className='btn__images' src={fowardImg} alt="Fowards Button" />
+            </button>
+          </div>
+        </div> */}
+
+        <div className="div_playerContainer">
+          <div className="div_controlesWrapper">
           <div className="div_controlesContainer">
             <button 
               id='btn_play' 
@@ -271,7 +315,6 @@ function App() {
           </div>
         </div>
 
-        <div className="div_playerContainer">
           {currentMedia && currentMedia.type === 'video' && (
             <video ref={mediaElementRef} id='displayMedia' key={currentMedia.src} /* controls */ >
               {/* O src agora é completo com o BACKEND_URL */}
