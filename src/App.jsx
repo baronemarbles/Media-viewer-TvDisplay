@@ -310,7 +310,7 @@ function App() {
               disabled={mediaList.length <= 1}
               title="Avançar"
             >
-              <img className='btn__images' src={fowardImg} alt="Fowards Button" />
+              <img className='btn__images' src='https://api.openweathermap.org/img/wn/01d@2x.png' alt="Fowards Button" />
             </button>
           </div>
         </div>

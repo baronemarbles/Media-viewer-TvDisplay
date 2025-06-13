@@ -13,7 +13,7 @@ const __dirname = 'J:/';
 const server = fastify({ logger: true });
 const allowedOrigins = [
   'http://localhost:5173',
-  'http://192.168.0.129:5173'
+  'http://192.168.0.126:5173'
 ];
 
 await server.register(fastifyCors, {
@@ -162,6 +162,11 @@ const startServer = async () => {
     process.exit(1);
   }
 };
+
+
+server.get('https://api.openweathermap.org/img/wn/01d@2x.png', (request, reply)=>{
+
+})
 
 startServer();
 

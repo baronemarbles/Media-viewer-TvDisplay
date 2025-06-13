@@ -1,0 +1,45 @@
+{
+ "coord": {
+  "lon": -46.3339,
+  "lat": -23.9608
+ },
+ "weather": [
+  {
+   "id": 800,
+   "main": "Clear",
+   "description": "clear sky",
+   "icon": "01n"
+  }
+ ],
+ "base": "stations",
+ "main": {
+  "temp": 20.81,
+  "feels_like": 20.1,
+  "temp_min": 19.41,
+  "temp_max": 21.64,
+  "pressure": 1023,
+  "humidity": 44,
+  "sea_level": 1023,
+  "grnd_level": 1006
+ },
+ "visibility": 10000,
+ "wind": {
+  "speed": 2.57,
+  "deg": 140
+ },
+ "clouds": {
+  "all": 0
+ },
+ "dt": 1749847487,
+ "sys": {
+  "type": 2,
+  "id": 2101928,
+  "country": "BR",
+  "sunrise": 1749807928,
+  "sunset": 1749846333
+ },
+ "timezone": -10800,
+ "id": 3449433,
+ "name": "Santos",
+ "cod": 200
+}
