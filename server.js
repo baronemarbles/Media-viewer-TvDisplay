@@ -164,10 +164,6 @@ const startServer = async () => {
 };
 
 
-server.get('https://api.openweathermap.org/img/wn/01d@2x.png', (request, reply)=>{
-
-})
-
 startServer();
 
 console.log(mediaDirectoryAbsolutePath);

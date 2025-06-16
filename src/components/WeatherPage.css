@@ -1,0 +1,26 @@
+#root {
+  text-align: center;
+  /* Usamos min-height para garantir que o contêiner ocupe pelo menos a altura da tela */
+  min-height: 100dvh;
+  width: 100dvw;
+  
+  /* Usando flexbox para centralizar o player na tela */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+}
+
+
+.weather-wrapper{
+     display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-evenly;
+    /* padding: 0 1rem; */
+}
+
+.description{
+    text-transform: capitalize;
+}
