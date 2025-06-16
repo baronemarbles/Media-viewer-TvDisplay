@@ -66,6 +66,18 @@ nav.main-nav {
     justify-content: center;
 }
 
+.main-min-max-temperature{
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+    justify-content: space-around;
+}
+
+.main-min-max-temperature .min-max-temperature{
+    color: rgb(240, 240, 240);
+    font-size: 1.44rem;
+}
+
 .main-weather-player .temperature {
     font-size: 6rem;
     font-weight: 200;

@@ -20,7 +20,8 @@ function getWeather(coordenadas,chaveApi){
     .then(data=>{
         console.log(data)
         const dataTempoString=JSON.stringify(data,0,1)
-        fs.writeFileSync('dadosClimaFuncao.json',dataTempoString)
+        fs.writeFileSync('dadosClimaFuncao.json',dataTempoString);
+            console.log(Math.round(data.main.temp_min))
     })
 
     .catch(error=>{

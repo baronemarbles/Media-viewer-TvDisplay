@@ -81,6 +81,10 @@ function WeatherPage() {
               alt={mainCityData.weather[0].description}
             />
             <p className="temperature">{Math.round(mainCityData.main.temp)}°C</p>
+            <div className="main-min-max-temperature">
+              <p className="min-max-temperature">{Math.round(mainCityData.main.temp_max)}°C</p>
+              <p className="min-max-temperature">{Math.round(mainCityData.main.temp_min)}°C</p>
+            </div>
           </div>
           <p className="description">{mainCityData.weather[0].description}</p>
           <div className="details">
