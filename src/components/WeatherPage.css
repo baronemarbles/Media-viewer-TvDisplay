@@ -1,26 +1,136 @@
-#root {
-  text-align: center;
-  /* Usamos min-height para garantir que o contêiner ocupe pelo menos a altura da tela */
-  min-height: 100dvh;
-  width: 100dvw;
-  
-  /* Usando flexbox para centralizar o player na tela */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+/* Container principal do dashboard */
+.weather-dashboard {
+    display: flex; /* Alinha o player principal e a lista de cidades lado a lado */
+    flex-direction: row;
+    gap: 2rem; /* Espaço entre o player principal e a lista */
+    width: 95vw;
+    height: 90vh; /* Ocupa boa parte da altura da tela */
+    max-width: 1600px;
+    padding: 2rem;
+    box-sizing: border-box;
+    align-items: center; /* Centraliza verticalmente se houver espaço sobrando */
+    justify-content: center; /* Centraliza horizontalmente */
+    background-image: linear-gradient(45deg, rgba(31, 60, 88, .5), rgba(52, 107, 156, .5));
+    border-radius: 1rem;
 }
 
-
-.weather-wrapper{
-     display: flex;
-    flex-direction: column;
-    height: 100%;
+nav.main-nav {
+    /* border: 2px solid red; */
+    display: flex;
+    padding: .5rem 1rem;
+    width: 30%;
     justify-content: space-evenly;
-    /* padding: 0 1rem; */
 }
 
-.description{
+.main-nav a{
+    background-color: #1f3c58;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    color: white;
+}
+
+.main-nav a:hover{
+    color: #ff8a8a;
+}
+
+/* Player principal da previsão do tempo (Santos) */
+.main-weather-player {
+    /* ✨ A MÁGICA DA PROPORÇÃO 9:16 ACONTECE AQUI ✨ */
+    aspect-ratio: 9 / 16;
+    height: 100%; /* A altura controla o tamanho, a largura será calculada pela proporção */
+
+    background: linear-gradient(160deg, #1f3c58, #346b9c);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    
+    /* Usa flexbox para organizar o conteúdo interno */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribui o conteúdo verticalmente */
+    padding: 2rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.main-weather-player .city-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.main-weather-player .main-weather-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-weather-player .temperature {
+    font-size: 6rem;
+    font-weight: 200;
+    margin: 0;
+    line-height: 1;
+}
+
+.main-weather-player .description {
+    font-size: 1.5rem;
     text-transform: capitalize;
+    margin-top: -1rem; /* Puxa um pouco pra cima */
+}
+
+.main-weather-player .details {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 1rem;
+}
+
+/* Coluna da direita com a lista das outras cidades */
+.side-cities-list {
+    display: flex;
+    flex-direction: column; /* Empilha os cards das cidades verticalmente */
+    gap: 1rem; /* Espaço entre os cards */
+    height: 100%;
+    overflow-y: visible; /* Adiciona scroll se a lista for muito grande */
+}
+
+/* Card individual para cada cidade na lista */
+.side-city-card {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 15px;
+    gap: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.side-city-card:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: scale(1.03);
+}
+
+.side-city-card .side-city-name {
+    flex-grow: 1; /* Faz o nome da cidade ocupar o espaço restante */
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.side-city-card .side-temperature {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Estilos para o estado de carregamento e erro */
+.weather-loading,
+.weather-error {
+    font-size: 2rem;
+    color: white;
+}
+.weather-error {
+    color: #ff8a8a;
 }
