@@ -63,7 +63,7 @@
 /* --- PLAYER CONTAINER (A MÁGICA) --- */
 .div_playerContainer {
   flex-grow: 1; /* Faz o container do player ocupar todo o espaço restante */
-  width: auto; /* A largura será controlada pelo flex-grow */
+  width: 100%; /* A largura será controlada pelo flex-grow */
   border-radius: 0; /* O wrapper já tem o overflow: hidden */
 
   /* 3. A MÁGICA ACONTECE AQUI: Força a proporção de 9:16 */
@@ -86,7 +86,7 @@
   height: 100%;
   
   /* 5. Garante que a mídia cubra a área sem distorcer */
-  object-fit: cover; 
+  object-fit:cover; 
   
   border-top-right-radius: 10px; /* Aplicando o radius aqui */
   border-bottom-right-radius: 10px;
@@ -114,6 +114,10 @@
 
 .btn__images {
   height: 4.5rem;
+}
+
+#img_previsao{
+  scale: 90%;
 }
 
 

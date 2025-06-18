@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './WeatherPage.css'; // Usaremos este CSS novo
 
 // Lista de cidades que queremos buscar
-const CITIES_TO_FETCH = ['Santos', 'São Paulo', 'Guarujá', 'Campinas'];
+const CITIES_TO_FETCH = ['Santos', 'São Paulo', 'Peruibe', 'Campinas'];
 
 function WeatherPage() {
   // O estado agora vai guardar um array de objetos de clima

@@ -1,10 +1,14 @@
 import { useState,useCallback, useEffect, useRef } from 'react';
+import SwitchToArmando from './SwitchToArmando';
+import{Routes,Route, Link} from 'react-router-dom';
 import logoVTV from '../assets/LOGO_vtv-da-gente-colorida.png';
 import playImg from '../assets/playBtn.svg';
 import pauseImg from '../assets/pauseBtn.svg';
 import fowardImg from '../assets/fowardBtn.svg';
 import backwardImg from '../assets/backwardsBtn.svg';
-import '../App.css';
+import previsaoImg from '../assets/previsaoImg.svg';
+import '../app.css'
+
 
 
 // URL base do seu backend. Certifique-se que é a porta correta do seu server.js
@@ -249,6 +253,15 @@ function MediaPlayer() {
             >
               <img className='btn__images' src={fowardImg} alt="Fowards Button" />
             </button>
+
+            <Link to='/switchArmando'>
+              <button 
+                className="btn_menuItens" 
+                title="Devolver controle para o Armando"
+              >
+                <img className='btn__images' id='img_previsao' src={previsaoImg} alt="Fowards Button" />
+              </button>
+            </Link>
           </div>
         </div>
 
