@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 function Player() {
   return (
     <>
-        <div className="div_controlesWrapper">
+        <div className="div_controlesWrapper_absolute">
             <div className="div_controlesContainer">
                 <Link 
                     id='btn_MidiaPlayer' 
