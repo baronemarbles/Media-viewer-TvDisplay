@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Player from './player';
 import './WeatherPage.css'; // Usaremos este CSS novo
+import './Player.css';
 
 // Lista de cidades que queremos buscar
 const CITIES_TO_FETCH = ['Santos', 'São Paulo', 'Peruibe', 'Campinas'];

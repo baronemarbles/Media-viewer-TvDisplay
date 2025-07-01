@@ -1,0 +1,11 @@
+.div_controlesWrapper {
+    display: flex;
+    width: fit-content;
+    height: 50%;
+    border: none;
+    z-index: 12;
+    position: absolute;
+    justify-self: end;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .03);
+    background-color: rgba(0, 0, 0, 0.03);
+}
