@@ -1,54 +1,36 @@
 import React from 'react'
+import playImg from '../assets/playBtn.svg';
+import pauseImg from '../assets/pauseBtn.svg';
+import fowardImg from '../assets/fowardBtn.svg';
+import backwardImg from '../assets/backwardsBtn.svg';
+import previsaoImg from '../assets/previsaoImg.svg';
+import switchImg from '../assets/switchIconSVG.svg'
+import fileImg from '../assets/FilesIconSVG.svg'
+import switchImg_noFill from '../assets/swticheSvg.svg'
+import '../app.css'
+import { Link } from 'react-router-dom';
 
-function player() {
+function Player() {
   return (
     <>
         <div className="div_controlesWrapper">
             <div className="div_controlesContainer">
-                <button 
-                    id='btn_play' 
-                    onClick={handlePlay} 
+                <Link 
+                    id='btn_MidiaPlayer' 
+                    to='/'
                     className="btn_menuItens" 
-                    disabled={!currentMedia || currentMedia?.type !== 'video' || isPlaying}
-                    title="Play"
+                    title="Link Reprodutor de mídia"
                 >
-                    <img className='btn__images' src={playImg} alt="Play Button" />
-                </button>
-                <button 
-                    id='btn_pause' 
-                    onClick={handlePause} 
-                    className="btn_menuItens" 
-                    disabled={!currentMedia || currentMedia?.type !== 'video' || !isPlaying}
-                    title="Pause"
-                >
-                    <img className='btn__images' src={pauseImg} alt="Pause Button" />
-                </button>
-                <button 
-                    id='btn_backward' 
-                    onClick={handlePrevious} 
-                    className="btn_menuItens" 
-                    disabled={mediaList.length <= 1}
-                    title="Voltar"
-                >
-                    <img className='btn__images' src={backwardImg} alt="Backwards Button" />
-                </button>
-                <button 
-                    id='btn_foward' 
-                    onClick={handleNext} 
-                    className="btn_menuItens" 
-                    disabled={mediaList.length <= 1}
-                    title="Avançar"
-                >
-                    <img className='btn__images' src={fowardImg} alt="Fowards Button" />
-                </button>
-
+                    <img className='btn__images' src={fileImg} alt="Midia Player" />
+                </Link>
+               
                 <Link 
                     id='btn_SwitchArmando' 
                     to="/switchArmando" 
                     className="btn_menuItens" 
                     title="Trocar para OBS comando Armando"
                 >
-                    <img className='btn__images' id='img_previsao' src={previsaoImg} alt="Fowards Button" />
+                    <img className='btn__images' src={switchImg_noFill} alt="Switch to SwitchArtScreen" />
                 </Link>
             </div>
         </div>
@@ -56,4 +38,4 @@ function player() {
   )
 }
 
-export default player
+export default Player

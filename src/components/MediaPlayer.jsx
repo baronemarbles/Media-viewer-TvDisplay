@@ -7,6 +7,8 @@ import pauseImg from '../assets/pauseBtn.svg';
 import fowardImg from '../assets/fowardBtn.svg';
 import backwardImg from '../assets/backwardsBtn.svg';
 import previsaoImg from '../assets/previsaoImg.svg';
+import fileImg from '../assets/FilesIconSVG.svg'
+import switchImg_noFill from '../assets/swticheSvg.svg'
 import '../app.css'
 
 
@@ -258,6 +260,15 @@ function MediaPlayer() {
               <button 
                 className="btn_menuItens" 
                 title="Devolver controle para o Armando"
+              >
+                <img className='btn__images' id='img_previsao' src={switchImg_noFill} alt="Switch to SwitchArtScreen" />
+              </button>
+            </Link>
+
+            <Link to='/clima'>
+              <button 
+                className="btn_menuItens" 
+                title="ClimaTempo"
               >
                 <img className='btn__images' id='img_previsao' src={previsaoImg} alt="Fowards Button" />
               </button>

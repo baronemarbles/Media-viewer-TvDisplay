@@ -1,5 +1,6 @@
 // src/components/WeatherPage.jsx
 import React, { useState, useEffect } from 'react';
+import Player from './player';
 import './WeatherPage.css'; // Usaremos este CSS novo
 
 // Lista de cidades que queremos buscar
@@ -69,45 +70,52 @@ function WeatherPage() {
   const otherCitiesData = weatherDataList.filter(data => data.name !== selectedCityName);
 
   return (
-    <div className="weather-dashboard">
-      
-      {/* Coluna 1: Player Principal (Santos) */}
-      {mainCityData && (
-        <div className="main-weather-player">
-          <p className="city-name">{mainCityData.name}</p>
-          <div className="main-weather-content">
-            <img 
-              src={`https://openweathermap.org/img/wn/${mainCityData.weather[0].icon}@4x.png`} 
-              alt={mainCityData.weather[0].description}
-            />
-            <p className="temperature">{Math.round(mainCityData.main.temp)}°C</p>
-            <div className="main-min-max-temperature">
-              <p className="min-max-temperature">{Math.round(mainCityData.main.temp_max)}°C</p>
-              <p className="min-max-temperature">{Math.round(mainCityData.main.temp_min)}°C</p>
+
+  <>
+  <div className="clima-page-content">
+      <Player/>
+      <div className="weather-dashboard">
+        
+        {/* Coluna 1: Player Principal (Santos) */}
+        {mainCityData && (
+          <div className="main-weather-player">
+            <p className="city-name">{mainCityData.name}</p>
+            <div className="main-weather-content">
+              <img 
+                src={`https://openweathermap.org/img/wn/${mainCityData.weather[0].icon}@4x.png`} 
+                alt={mainCityData.weather[0].description}
+              />
+              <p className="temperature">{Math.round(mainCityData.main.temp)}°C</p>
+              <div className="main-min-max-temperature">
+                <p className="min-max-temperature">{Math.round(mainCityData.main.temp_max)}°C</p>
+                <p className="min-max-temperature">{Math.round(mainCityData.main.temp_min)}°C</p>
+              </div>
+            </div>
+            <p className="description">{mainCityData.weather[0].description}</p>
+            <div className="details">
+              <span>Sensação: {Math.round(mainCityData.main.feels_like)}°C</span>
+              <span>Umidade: {mainCityData.main.humidity}%</span>
             </div>
           </div>
-          <p className="description">{mainCityData.weather[0].description}</p>
-          <div className="details">
-            <span>Sensação: {Math.round(mainCityData.main.feels_like)}°C</span>
-            <span>Umidade: {mainCityData.main.humidity}%</span>
-          </div>
-        </div>
-      )}
+        )}
 
-      {/* Coluna 2: Lista das Outras Cidades */}
-      <div className="side-cities-list">
-        {otherCitiesData.map(cityData => (
-          <div className="side-city-card" key={cityData.id} onClick={()=> handleCitySelect(cityData.name)}>
-            <p className="side-city-name">{cityData.name}</p>
-            <img 
-              src={`https://openweathermap.org/img/wn/${cityData.weather[0].icon}@2x.png`} 
-              alt={cityData.weather[0].description}
-            />
-            <p className="side-temperature">{Math.round(cityData.main.temp)}°C</p>
-          </div>
-        ))}
+        {/* Coluna 2: Lista das Outras Cidades */}
+        <div className="side-cities-list">
+          {otherCitiesData.map(cityData => (
+            <div className="side-city-card" key={cityData.id} onClick={()=> handleCitySelect(cityData.name)}>
+              <p className="side-city-name">{cityData.name}</p>
+              <img 
+                src={`https://openweathermap.org/img/wn/${cityData.weather[0].icon}@2x.png`} 
+                alt={cityData.weather[0].description}
+              />
+              <p className="side-temperature">{Math.round(cityData.main.temp)}°C</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
+  </>
+  
   );
 }
 
