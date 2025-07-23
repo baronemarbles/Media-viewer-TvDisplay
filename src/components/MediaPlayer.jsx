@@ -284,7 +284,9 @@ function MediaPlayer() {
             </video>
           )}
           {currentMedia && currentMedia.type === 'image' && (
+            // <div class='img_container'>
             <img ref={mediaElementRef} id='displayMedia' src={`${BACKEND_URL}${currentMedia.src}`} alt={currentMedia.name || 'Mídia'} />
+            // </div>
           )}
           {!currentMedia && mediaList.length > 0 && <p>Selecione uma mídia.</p>}
         </div>

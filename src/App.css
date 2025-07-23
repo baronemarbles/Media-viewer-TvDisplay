@@ -120,6 +120,17 @@
   scale: 95%;
 }
 
+.div_ContentMapa {
+  display: flex;
+  width:100%;
+  justify-content: center;
+}
+
+.iframe_Waze{
+  width:95dvw;
+}
+
+
 
 @keyframes logo-spin {
   from {
