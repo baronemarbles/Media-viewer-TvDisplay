@@ -130,6 +130,38 @@
   width:95dvw;
 }
 
+.Hidden{
+  visibility: hidden;
+}
+
+.botoesCidades{
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; */
+  height: 100%;
+  justify-content:space-evenly;
+  gap: 1rem;
+  position: relative;
+  right: 100%;
+}
+
+.botaoCidade{
+  height: 3rem;
+  padding: .5rem 1rem;
+  border: 1px darkgray;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  transition: all .25s ;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgb(20,20,20);
+}
+
+.botaoCidade:hover{
+  cursor: pointer;
+  background-color: #dda815;
+  color: white;
+}
 
 
 @keyframes logo-spin {
