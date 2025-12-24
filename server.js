@@ -8,7 +8,7 @@ import fastifyCors from '@fastify/cors';
 import chokidar from 'chokidar'; // 1. Importe o chokidar
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = 'J:/';
+const __dirname = '/run/user/1000/gvfs/smb-share:server=REMOVED_SECRET,share=REMOVED_SECRET';
 
 const server = fastify({ logger: true });
 const allowedOrigins = [
@@ -23,6 +23,7 @@ await server.register(fastifyCors, {
 
 const mediaDirectoryUserPath = 'tv';
 const mediaDirectoryAbsolutePath = path.join(__dirname, mediaDirectoryUserPath);
+console.log(mediaDirectoryAbsolutePath);
 
 server.register(fastifyStatic, {
   root: mediaDirectoryAbsolutePath,

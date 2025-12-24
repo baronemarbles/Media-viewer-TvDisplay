@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import Player from './player'
+import Player from "./Player"
 import '../app.css'
 
 const urlWazeCidades= {
@@ -51,8 +51,8 @@ function SwitchToArmando() {
       {cidadeAtiva==='Bertioga' && (
         <iframe className='iframe_Waze' id='waze_Bertioga' src={urlWazeCidades.Bertioga} width="600" height="450" allowFullScreen></iframe>  
       )}
+      <Player/>
       <div id='innerMenu'>
-        <Player/>
         <div className="botoesCidades">
           <button className="botaoCidade" id='botaoCidade_Santos' onClick={()=>handleCidadeClick('Santos')}>Santos</button>
           <button className="botaoCidade" id='botaoCidade_PraiaGrande' onClick={()=>handleCidadeClick('PraiaGrande')}>Praia Grande</button>

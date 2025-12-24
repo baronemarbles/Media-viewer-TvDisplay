@@ -1,11 +1,14 @@
 .div_controlesWrapper_absolute {
     display: flex;
     width: fit-content;
-    height: 50%;
+    height: fit-content;
     border: none;
     z-index: 12;
     position: absolute;
     justify-self: end;
     box-shadow: 0 0 20px rgba(0, 0, 0, .03);
     background-color: rgba(0, 0, 0, 0.03);
+    right: 90%;
+    top: 50%;
+    transform: translateY(-50%);
 }

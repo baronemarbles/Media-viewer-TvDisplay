@@ -57,6 +57,7 @@
     justify-content: space-evenly;
     padding: 0 1rem;
     /* border: 2px solid salmon; */
+    gap:1rem
 }
 
 
@@ -141,16 +142,18 @@
   height: 100%;
   justify-content:space-evenly;
   gap: 1rem;
-  position: relative;
-  right: 100%;
+  /* position: relative;
+  right: 100%; */
 }
 
 .botaoCidade{
   height: 3rem;
   padding: .5rem 1rem;
+  margin: .5rem;
   border: 1px darkgray;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  background-color: transparent;
   transition: all .25s ;
   font-weight: bold;
   text-transform: uppercase;
@@ -159,8 +162,14 @@
 
 .botaoCidade:hover{
   cursor: pointer;
-  background-color: #dda815;
-  color: white;
+  backdrop-filter: blur(3px);
+}
+
+#innerMenu{
+  position: absolute;
+  left: 97.5dvw;
+  transform: translateX(-100%);
+  top: 11%;
 }
 
 

@@ -1,6 +1,6 @@
 // src/components/WeatherPage.jsx
 import React, { useState, useEffect } from 'react';
-import Player from './player';
+import Player from "./Player"
 import './WeatherPage.css'; // Usaremos este CSS novo
 import './Player.css';
 
