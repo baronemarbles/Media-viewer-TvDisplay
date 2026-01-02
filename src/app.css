@@ -135,7 +135,8 @@
 }
 
 .iframe_Waze{
-  width:95dvw;
+  width:100dvw;
+  height: 100dvh;
 }
 
 .Hidden{
@@ -163,27 +164,31 @@
   right: 100%; */
 }
 
-.botaoCidade{
+.botaoCidade {
   height: 3rem;
   padding: .5rem 1rem;
   margin: .5rem;
   border: 1px darkgray;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  background-color: transparent;
-  /* background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJrG2WaFWF0VLG0oHcXDsFAb0tlx_a9D7N2w&s"); */
-  background-size:cover;
-  background-position-y: 5rem;
-
-  transition: all .25s ;
+  background-color: rgba(35, 104, 158,.6);
+  background-size: cover;
+  transition: all .25s;
   font-weight: bold;
   text-transform: uppercase;
-  color: rgb(20,20,20);
+  color: rgb(240,240,240);
+  width: 100%;
+
+  border: 2px solid rgba(49, 138, 208,.3);
 }
 
 .botaoCidade:hover{
   cursor: pointer;
   backdrop-filter: blur(3px);
+}
+
+.bttn-icons{
+  height: 85%;
 }
 
 #botaoCidade_Rodovias{
@@ -212,8 +217,12 @@ button>img{
   rotate: 90deg;
 }
 
-#img-toggle{
+.img-toggle{
   transition: all .4s ease;
+}
+
+.position-fixed{
+  position: fixed;
 }
 
 #innerMenu{

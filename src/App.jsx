@@ -65,6 +65,7 @@ import{Routes,Route, Link} from 'react-router-dom';
 import MediaPlayer from './components/MediaPlayer';
 import WeatherPage from './components/WeatherPage';
 import SwitchToArmando from './components/SwitchToArmando';
+import WazeIframe from './components/WazeIframe';
 
 function App(){
   return(
@@ -82,6 +83,7 @@ function App(){
         <Route path="/" element={<MediaPlayer />} />
         <Route path="/clima" element={<WeatherPage />} />
         <Route path="/switchArmando" element={<SwitchToArmando/>} />
+        <Route path="/weather-teste" element={<WazeIframe/>} />
       </Routes>
     </>
   )

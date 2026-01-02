@@ -14,6 +14,7 @@ const urlWazeCidades= {
   rd_Bandeirantes:"https://embed.waze.com/pt-BR/iframe?zoom=12&lat=-23.425&lon=-46.808&ct=livemap",
   rd_Anchieta:"https://embed.waze.com/pt-BR/iframe?zoom=12&lat=-23.816&lon=-46.526&ct=livemap",
   rd_Imigrantes:"https://embed.waze.com/pt-BR/iframe?zoom=12&lat=-23.889&lon=-46.522&ct=livemap",
+  rd_PeManoelNobrega:"https://embed.waze.com/pt-BR/iframe?zoom=10&lat=-24.229&lon=-46.945&ct=livemap"
 }
 
 
@@ -51,7 +52,9 @@ function SwitchToArmando() {
   const rd_Bandeirantes = useRef(null);
   const rd_Anchieta = useRef(null);
   const rd_Imigrantes = useRef(null);
+  const rd_PeManoelNobrega = useRef(null);
   const rdElmnts= useRef(null);
+
   const [cidadeAtiva,setCidadeAtiva] = useState('Santos');
   const isRdExpanded = useState(false)
 
@@ -74,21 +77,24 @@ function SwitchToArmando() {
     rd_Bandeirantes.current.classList.toggle("btn-hidden");
     rd_Anchieta.current.classList.toggle("btn-hidden");
     rd_Imigrantes.current.classList.toggle("btn-hidden");
+    rd_PeManoelNobrega.current.classList.toggle("rd_PeManoelNobrega");
 
     console.log(rdElmnts);
 
   };
 
    const handleTogglePnt = (array)=>{
-    for(var i;i<array.length-1;i++){
-      console.log(array[i]);
-      console.log(array[i].current);
-      array[i].current.classList.toggle("btn-hidden")
+     const arr=array;
+    // console.log(array,arr,arr.length);
+    for(var i=0;i<arr.length;i++){
+      console.log(arr[i]);
+      console.log(arr[i].current);
+      arr[i].current.classList.toggle("btn-hidden")
     }
 
   };
 
-  containerRodoviasEl.addEventListener
+
 
  const handleToggleRodoviasTeste = (e)=>{
     console.log(isRdExpanded[0]);
@@ -124,6 +130,10 @@ function SwitchToArmando() {
         <iframe className='iframe_Waze' id='waze_Hortolandia' src={urlWazeCidades.Hortolandia} width="600" height="450" allowFullScreen></iframe>  
       )}
 
+      {cidadeAtiva==='rd_PeManoelNobrega' && (
+        <iframe className='iframe_Waze' id='waze_rd_PeManoelNobrega' src={urlWazeCidades.rd_PeManoelNobrega} width="600" height="450" allowFullScreen></iframe>  
+      )}
+      
       {cidadeAtiva==='rd_Anhanguera' && (
         <iframe className='iframe_Waze' id='waze_rd_Anhanguera' src={urlWazeCidades.rd_Anhanguera} width="600" height="450" allowFullScreen></iframe>  
       )}
@@ -150,12 +160,15 @@ function SwitchToArmando() {
         <Player/>
       <div id='innerMenu'>
         <div className="botoesCidades">
-          <button ref={cd_Pnt} className="botaoCidade" id='botaoTogglePnt' onClick={()=>handleTogglePnt([cd_Santos,cd_PraiaGrande,cd_Campinas,cd_Bertioga,cd_Hortolandia])}>PNT</button>
-          <button ref={cd_Santos} className="botaoCidade" id='botaoCidade_Santos' onClick={()=>handleCidadeClick('Santos')}>Santos</button>
-          <button ref={cd_Santos} className="botaoCidade" id='botaoCidade_PraiaGrande' onClick={()=>handleCidadeClick('PraiaGrande')}>Praia Grande</button>
-          <button ref={cd_Santos} className="botaoCidade" id='botaoCidade_Campinas' onClick={()=>handleCidadeClick('Campinas')}><p>Campinas</p></button>
-          <button ref={cd_Santos} className="botaoCidade" id='botaoCidade_Bertioga' onClick={()=>handleCidadeClick('Bertioga')}>Bertioga</button>
-          <button ref={cd_Santos} className="botaoCidade" id='botaoCidade_Hortolandia' onClick={()=>handleCidadeClick('Hortolandia')}>Hortolandia</button>
+          <button ref={cd_Pnt} className="botaoCidade" id='botaoTogglePnt' onClick={()=>handleTogglePnt([cd_Santos,cd_PraiaGrande,cd_Campinas,cd_Bertioga,cd_Hortolandia])}>
+            PNT
+            <svg ref={imagemToggle} className="bttn-icons"id="img-toggle" fill="#f6f5f4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30.729 30.729" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M24.813,15.366L10.185,29.997c-0.487,0.487-1.128,0.731-1.768,0.731c-0.641,0-1.279-0.244-1.769-0.731 c-0.977-0.978-0.977-2.561,0-3.536l11.095-11.096L6.649,4.268c-0.976-0.977-0.976-2.56,0-3.536c0.977-0.977,2.56-0.976,3.536,0 L24.813,15.366z"></path> </g> </g></svg>
+            </button>
+          <button ref={cd_Santos} className="botaoCidade btn-hidden" id='botaoCidade_Santos' onClick={()=>handleCidadeClick('Santos')}>Santos</button>
+          <button ref={cd_PraiaGrande} className="botaoCidade btn-hidden" id='botaoCidade_PraiaGrande' onClick={()=>handleCidadeClick('PraiaGrande')}>Praia Grande</button>
+          <button ref={cd_Campinas} className="botaoCidade btn-hidden" id='botaoCidade_Campinas' onClick={()=>handleCidadeClick('Campinas')}><p>Campinas</p></button>
+          <button ref={cd_Bertioga} className="botaoCidade btn-hidden" id='botaoCidade_Bertioga' onClick={()=>handleCidadeClick('Bertioga')}>Bertioga</button>
+          <button ref={cd_Hortolandia} className="botaoCidade btn-hidden" id='botaoCidade_Hortolandia' onClick={()=>handleCidadeClick('Hortolandia')}>Hortolandia</button>
           <button ref={containerRodoviasEl} className="botaoCidade" id='botaoCidade_Rodovias' onClick={()=>handleToggleRodovias()}>
             {/* <div>
               <p>|</p>
@@ -163,15 +176,17 @@ function SwitchToArmando() {
               <p>|</p>
               </div> */}
               <img src="https://www.svgrepo.com/show/37543/location-on-road.svg"/>
-              <img ref={imagemToggle} id="img-toggle" src='https://www.svgrepo.com/show/14652/right-arrow-angle.svg'/>
+              {/* <img ref={imagemToggle} id="img-toggle" src='<svg fill="#f6f5f4" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30.729 30.729" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M24.813,15.366L10.185,29.997c-0.487,0.487-1.128,0.731-1.768,0.731c-0.641,0-1.279-0.244-1.769-0.731 c-0.977-0.978-0.977-2.561,0-3.536l11.095-11.096L6.649,4.268c-0.976-0.977-0.976-2.56,0-3.536c0.977-0.977,2.56-0.976,3.536,0 L24.813,15.366z"></path> </g> </g></svg>'/> */}
+              <svg ref={imagemToggle} className="bttn-icons img-toggle" fill="#f6f5f4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30.729 30.729" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M24.813,15.366L10.185,29.997c-0.487,0.487-1.128,0.731-1.768,0.731c-0.641,0-1.279-0.244-1.769-0.731 c-0.977-0.978-0.977-2.561,0-3.536l11.095-11.096L6.649,4.268c-0.976-0.977-0.976-2.56,0-3.536c0.977-0.977,2.56-0.976,3.536,0 L24.813,15.366z"></path> </g> </g></svg>
             </button>
           {/* <button ref={rd1El} className="botaoCidade btn-hidden" id='botaoCidade_Rodovias-1'>RD 1</button> */}
+          <button ref={rd_PeManoelNobrega} className="botaoCidade  rodovias" id='botaoCidade_Rodovia-PeManoelNobrega' onClick={()=>handleCidadeClick('rd_PeManoelNobrega')}>Pe.Manoel Nobrega</button>
           <button ref={rd_Anhanguera} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-anhanguera' onClick={()=>handleCidadeClick('rd_Anhanguera')}>Anhanguera</button>
           <button ref={rd_SantosDumont} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-santosDumont' onClick={()=>handleCidadeClick('rd_SantosDumont')}>Santos Dumont</button>
           <button ref={rd_DomPedro} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-domPedro' onClick={()=>handleCidadeClick('rd_DomPedro')}>Dom Pedro</button>
-          <button ref={rd_Bandeirantes} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-bandeirantes' onClick={()=>handleCidadeClick('rd_Bandeirantes')}>Santos Dumont</button>
+          <button ref={rd_Bandeirantes} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-bandeirantes' onClick={()=>handleCidadeClick('rd_Bandeirantes')}>Bandeirantes</button>
           <button ref={rd_Anchieta} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-anchieta' onClick={()=>handleCidadeClick('rd_Anchieta')}>Anchieta</button>
-          <button ref={rd_Imigrantes} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-imigrantes' onClick={()=>handleCidadeClick('rd_Imigrantes')}>Santos Dumont</button>
+          <button ref={rd_Imigrantes} className="botaoCidade btn-hidden rodovias" id='botaoCidade_Rodovia-imigrantes' onClick={()=>handleCidadeClick('rd_Imigrantes')}>Imigrantes</button>
           {/* <button className="botaoCidade btn-hidden rodovias" id='botaoCidade_Imigrantes' onClick={()=>handleCidadeClick('rd_Imigrantes')}>Imigrantes</button> */}
         </div>
       </div>
