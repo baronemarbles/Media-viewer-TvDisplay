@@ -113,10 +113,7 @@ function WazeIframe() {
         <iframe className='iframe_Waze' id='waze_Santos' src={urlWazeCidades.Santos} width="600" height="450" allowFullScreen></iframe>  
       </div>
 
-      {/* <div className="slider">
-        <iframe className='iframe_Waze' id='waze_Santos' src={urlWazeCidades.Santos} width="600" height="450" allowFullScreen></iframe>  
-      </div> */}
-        
+   
       <div className="slider" id="slide-PraiaGrande">
         <iframe className='iframe_Waze' id='waze_PraiaGrande' src={urlWazeCidades.PraiaGrande} width="600" height="450" allowFullScreen></iframe>  
       </div>

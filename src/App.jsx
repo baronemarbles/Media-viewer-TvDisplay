@@ -63,27 +63,22 @@
 import React from 'react';
 import{Routes,Route, Link} from 'react-router-dom';
 import MediaPlayer from './components/MediaPlayer';
-import WeatherPage from './components/WeatherPage';
 import SwitchToArmando from './components/SwitchToArmando';
 import WazeIframe from './components/WazeIframe';
+import Top15 from './components/Top15';
 
 function App(){
   return(
     <>
-       {/* Você pode criar um menu de navegação aqui se quiser */}
-      {/* <nav className="main-nav">
-        <Link to="/">Player de Mídia</Link>
-        <Link to="/clima">Previsão do Tempo</Link>
-        <></>
-      </nav> */}
+      
 
       {/* O <Routes> define a área onde as páginas serão trocadas */}
       <Routes>
         {/* A <Route> define qual componente renderizar para cada caminho (path) */}
         <Route path="/" element={<MediaPlayer />} />
-        <Route path="/clima" element={<WeatherPage />} />
         <Route path="/switchArmando" element={<SwitchToArmando/>} />
         <Route path="/weather-teste" element={<WazeIframe/>} />
+        <Route path="/top-15" element={<Top15/>} />
       </Routes>
     </>
   )

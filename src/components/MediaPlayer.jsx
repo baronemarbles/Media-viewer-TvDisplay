@@ -175,46 +175,7 @@ function MediaPlayer() {
       {/*<img className="logo" src={logoVTV} alt="Logo VTV"></img>*/}
 
       <div className="div_playerWrapper">
-        {/* <div className="div_controlesWrapper">
-          <div className="div_controlesContainer">
-            <button 
-              id='btn_play' 
-              onClick={handlePlay} 
-              className="btn_menuItens" 
-              disabled={!currentMedia || currentMedia?.type !== 'video' || isPlaying}
-              title="Play"
-            >
-              <img className='btn__images' src={playImg} alt="Play Button" />
-            </button>
-            <button 
-              id='btn_pause' 
-              onClick={handlePause} 
-              className="btn_menuItens" 
-              disabled={!currentMedia || currentMedia?.type !== 'video' || !isPlaying}
-              title="Pause"
-            >
-              <img className='btn__images' src={pauseImg} alt="Pause Button" />
-            </button>
-            <button 
-              id='btn_backward' 
-              onClick={handlePrevious} 
-              className="btn_menuItens" 
-              disabled={mediaList.length <= 1}
-              title="Voltar"
-            >
-              <img className='btn__images' src={backwardImg} alt="Backwards Button" />
-            </button>
-            <button 
-              id='btn_foward' 
-              onClick={handleNext} 
-              className="btn_menuItens" 
-              disabled={mediaList.length <= 1}
-              title="Avançar"
-            >
-              <img className='btn__images' src={fowardImg} alt="Fowards Button" />
-            </button>
-          </div>
-        </div> */}
+       
 
         <div className="div_playerContainer">
           <div className="div_controlesWrapper">
@@ -291,10 +252,8 @@ function MediaPlayer() {
           {!currentMedia && mediaList.length > 0 && <p>Selecione uma mídia.</p>}
         </div>
 
-        {/* Você tinha um segundo conjunto de controles, removi pois parecia duplicado */}
+        
       </div>
-      {/* A tag <script src="../js/main.js"></script> não é a forma usual de adicionar JS em React. 
-          A lógica deve estar no componente ou em módulos importados. */}
     </>
   );
 }

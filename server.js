@@ -8,14 +8,14 @@ import fastifyCors from '@fastify/cors';
 import chokidar from 'chokidar'; // 1. Importe o chokidar
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = '/run/user/1000/gvfs/smb-share:server=REMOVED_SECRET,share=REMOVED_SECRET';
+const __dirname = `/run/user/1000/gvfs/smb-share:server=${process.env.DIR_NAME},share=${process.env.SHARE}`;
 
 const server = fastify({ logger: true });
 const allowedOrigins = [
   'http://localhost:5173',
   'http://192.168.0.126:5173'
-];
-
+]
+console.log(process.env.DIR_NAME);
 await server.register(fastifyCors, {
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -30,11 +30,10 @@ server.register(fastifyStatic, {
   prefix: '/media/',
 });
 
-// Vamos manter mediaFilesList aqui para que possa ser atualizada
+//mediaFilesList aqui pra lista ser atualizada
 let mediaFilesList = [];
 let sseClients = []; // Para armazenar os clientes SSE conectados
 
-// 2. Modifique loadMediaFiles para que possa ser chamada para recarregar
 async function loadMediaFiles() {
   server.log.info('Recarregando lista de arquivos de mídia...');
   try {
