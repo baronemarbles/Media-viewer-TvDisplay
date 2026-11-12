@@ -1,6 +1,5 @@
 import * as fs from 'fs'
-const chaveApiWeather='REMOVED_SECRET'
-const apiGeoURL= `http://api.openweathermap.org/geo/1.0/direct?q=Santos&limit=1&appid=${chaveApiWeather}`
+const apiGeoURL= `http://api.openweathermap.org/geo/1.0/direct?q=Santos&limit=1&appid=${process.env.VITE_OPENWEATHER_API_KEY}`
 
 const coordenadasCidade = new Map();
 
@@ -48,7 +47,7 @@ fetch(apiGeoURL)
     coordenadasCidade.set('latitude',data[0].lat)
     coordenadasCidade.set('longitude',data[0].lon)
     console.log(coordenadasCidade)
-    getWeather(coordenadasCidade,chaveApiWeather)
+    getWeather(coordenadasCidade,process.env.VITE_OPENWEATHER_API_KEY)
 })
 .catch(error=>{
     console.log(`Ocorreu um erro: ${error}`)
@@ -56,5 +55,5 @@ fetch(apiGeoURL)
 
 
 /*API CLIMA*/
-const apiClimaURL = `https://api.openweathermap.org/data/2.5/weather?lat=${coordenadasCidade.get('latitude')}&lon=${coordenadasCidade.get('longitude')}&appid=${chaveApiWeather}&lan=pt_br&units=metric`
+const apiClimaURL = `https://api.openweathermap.org/data/2.5/weather?lat=${coordenadasCidade.get('latitude')}&lon=${coordenadasCidade.get('longitude')}&appid=${process.env.VITE_OPENWEATHER_API_KEY}&lan=pt_br&units=metric`
 console.log('ORRA'+apiClimaURL)
